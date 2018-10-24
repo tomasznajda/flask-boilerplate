@@ -8,3 +8,4 @@ Flask_Admin==1.5.2
 Flask==1.0.2
 Flask_SQLAlchemy==2.3.2
 psycopg2==2.7.1
+gunicorn>=19.5.0

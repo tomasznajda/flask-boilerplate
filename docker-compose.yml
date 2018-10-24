@@ -20,4 +20,4 @@ services:
       - "7100:7100"
     depends_on:
       - database
-    command: python app.py
+    command: gunicorn app:app --bind 0.0.0.0:7100 --workers 2
