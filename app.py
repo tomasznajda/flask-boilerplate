@@ -1,4 +1,4 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, render_template
 from flask.blueprints import Blueprint
 from flask_security import Security
 from flask_admin import helpers as admin_helpers
@@ -36,6 +36,17 @@ app.url_map.strict_slashes = False
 for blueprint in vars(api.routes).values():
     if isinstance(blueprint, Blueprint):
         app.register_blueprint(blueprint)
+
+
+# Custom error pages
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('errors/404.html'), 404
+
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('errors/500.html'), 500
 
 
 if __name__ == '__main__':
