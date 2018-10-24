@@ -1,0 +1,41 @@
+Update an user with given id
+---
+tags:
+  - users
+parameters:
+  - name: id
+    in: path
+    type: integer
+    description: the id of the user
+    required: true
+  - name: body
+    in: body
+    required: true
+    schema:
+      required:
+        - first_name
+        - last_name
+      properties:
+        first_name:
+          type: string
+          description: the first name of the user
+        last_name:
+          type: string
+          description: the last name of the user
+        age:
+          type: integer
+          description: the age of the user
+responses:
+  200:
+    description: Success
+    schema:
+      example:
+        first_name: John
+        last_name: Doe
+        age: 25
+  400:
+    description: Failure
+    schema:
+      example:
+        code: 1000
+        error: User does not exist

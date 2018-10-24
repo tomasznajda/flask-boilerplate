@@ -1,0 +1,21 @@
+Delete an user with given id
+---
+tags:
+  - users
+parameters:
+  - name: id
+    in: path
+    type: integer
+    description: the id of the user
+    required: true
+responses:
+  204:
+    description: Success
+    schema:
+      example:
+  400:
+    description: Failure
+    schema:
+      example:
+        code: 1000
+        error: User does not exist

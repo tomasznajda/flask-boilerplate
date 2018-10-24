@@ -9,6 +9,9 @@ from config import config, host, port
 import api.routes
 
 from api.models import db
+from api.models.user import User
+
+from api.admin.user import UserView
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -20,6 +23,7 @@ db.app = app
 security = Security(app, admins_store)
 admin = AdminLte(app, skin = 'green', name = 'FlaskCMS', short_name = "<b>F</b>C", long_name = "<b>Flask</b>CMS")
 admin.add_link(FaLink(name = "Documentation", icon_value = 'fa-book', icon_type = "fa", url = '/apidocs/'))
+admin.add_view(UserView(User, db.session, name = "Users", menu_icon_value = 'fa-users'))
 
 
 @security.context_processor
