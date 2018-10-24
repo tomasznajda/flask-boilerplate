@@ -2,6 +2,7 @@ from flask import Flask, url_for, render_template
 from flask.blueprints import Blueprint
 from flask_security import Security
 from flask_admin import helpers as admin_helpers
+from flasgger import Swagger
 from adminlte.admin import AdminLte, admins_store
 from adminlte.views import FaLink
 from config import config, host, port
@@ -36,6 +37,24 @@ app.url_map.strict_slashes = False
 for blueprint in vars(api.routes).values():
     if isinstance(blueprint, Blueprint):
         app.register_blueprint(blueprint)
+
+
+# Swagger
+app.config['SWAGGER'] = {
+    "swagger_version": "2.0",
+    "title": "FlaskCMS",
+    "specs": [
+        {
+            "version": "0.0.1",
+            "title": "FlaskCMS",
+            "endpoint": 'spec',
+            "route": '/application/spec',
+            "rule_filter": lambda rule: True  # all in
+        }
+    ],
+    "static_url_path": "/application/apidocs"
+}
+Swagger(app)
 
 
 # Custom error pages

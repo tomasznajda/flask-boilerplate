@@ -1,4 +1,5 @@
 Flask_Script==2.0.5
+flasgger==0.9.1
 Flask_RESTful==0.3.6
 Flask_Migrate==2.2.1
 Flask_Security==3.0.0
