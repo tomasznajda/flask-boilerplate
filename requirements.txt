@@ -1,0 +1,7 @@
+Flask_Script==2.0.5
+Flask_RESTful==0.3.6
+Flask_Migrate==2.2.1
+SQLAlchemy==1.2.11
+Flask==1.0.2
+Flask_SQLAlchemy==2.3.2
+psycopg2==2.7.1
