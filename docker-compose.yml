@@ -1,0 +1,23 @@
+version: '2'
+services:
+  database:
+    restart: always
+    image: postgres:10
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    env_file:
+      - .env
+    volumes:
+      - ./postgres-data/postgres:/var/lib/postgresql/data
+    ports:
+      - "5431:5431"
+  api:
+    restart: always
+    build: .
+    ports:
+      - "7100:7100"
+    depends_on:
+      - database
+    command: python app.py
