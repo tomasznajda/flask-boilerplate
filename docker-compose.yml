@@ -16,6 +16,8 @@ services:
   api:
     restart: always
     build: .
+    env_file:
+    - .env
     ports:
       - "7100:7100"
     depends_on:
