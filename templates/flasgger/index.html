@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include 'flasgger/head.html' %}
+    {% include 'flasgger/custom_head.html' %}
+    {% if not current_user.is_authenticated %}
+        <meta http-equiv="refresh" content="0; url={{ url_for('security.login') }}"/>
+    {% endif %}
+</head>
+<body>
+{% include 'flasgger/top.html' %}
+<div id="swagger-ui">
+    <div data-reactroot="" class="swagger-ui" style="text-align: center;">
+        {% if current_user.is_authenticated %}
+            <div>
+                <div class="information-container wrapper">
+                    <section class="block col-12">
+                        <div class="loading-container">
+                            <div class="loading"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        {% else %}
+            <br/><br/><br/><br/><br/><br/>
+            <span>
+                You are not authenticated.<br/>
+                If you have not been automatically redirected to login,
+                click <a href="{{ url_for('security.login') }}">here</a>.
+            </span>
+        {% endif %}
+    </div>
+</div>
+
+<div id="swagger-ui"></div>
+
+<script src="{{ url_for('flasgger.static', filename='swagger-ui-bundle.js') }}"></script>
+<script src="{{ url_for('flasgger.static', filename='swagger-ui-standalone-preset.js') }}"></script>
+<script src="{{ url_for('flasgger.static', filename='lib/jquery.min.js') }}" type='text/javascript'></script>
+
+{% if current_user.is_authenticated %}
+    {% include 'flasgger/swagger.html' %}
+    {% include 'flasgger/footer.html' %}
+{% endif %}
+</body>
+</html>
