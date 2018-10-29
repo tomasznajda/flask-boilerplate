@@ -14,8 +14,8 @@ db.init_app(app)
 
 Security(app, admins_store)
 
-Migrate(app, db)
-Migrate(app, admin_db)
+migrate = Migrate(app, db)
+admin_migrate = Migrate(app, admin_db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
