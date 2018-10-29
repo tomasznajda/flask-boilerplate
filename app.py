@@ -22,7 +22,7 @@ db.app = app
 # AdminLTE Panel
 security = Security(app, admins_store)
 admin = AdminLte(app, skin = 'green', name = 'FlaskCMS', short_name = "<b>F</b>C", long_name = "<b>Flask</b>CMS")
-admin.add_link(FaLink(name = "Documentation", icon_value = 'fa-book', icon_type = "fa", url = '/apidocs/'))
+admin.add_link(FaLink(name = "Documentation", icon_value = 'fa-book', icon_type = "fa", url = '/docs/'))
 admin.add_view(UserView(User, db.session, name = "Users", menu_icon_value = 'fa-users'))
 
 
@@ -49,14 +49,17 @@ app.config['SWAGGER'] = {
     "title": "FlaskCMS",
     "specs": [
         {
-            "version": "0.0.1",
-            "title": "FlaskCMS",
+            "version": None,
+            "title": "API Docs",
+            "description": None,
+            "termsOfService": None,
             "endpoint": 'spec',
-            "route": '/application/spec',
+            "route": '/spec/',
             "rule_filter": lambda rule: True  # all in
         }
     ],
-    "static_url_path": "/application/apidocs"
+    "static_url_path": "/docs/",
+    "specs_route": "/docs/"
 }
 Swagger(app)
 
