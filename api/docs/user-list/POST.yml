@@ -20,17 +20,41 @@ parameters:
         age:
           type: integer
           description: the age of the user
-responses:
-  200:
-    description: Success
-    schema:
       example:
         first_name: John
         last_name: Doe
         age: 25
+responses:
+  200:
+    description: Success
+    schema:
+      $ref: '#/definitions/User'
   400:
     description: Failure
     schema:
-      example:
+      $ref: '#/definitions/Error'
+    examples:
+      1000:
         code: 1000
         error: User does not exist
+definitions:
+  User:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      age:
+        type: integer
+    example:
+      first_name: John
+      last_name: Doe
+      age: 25
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+      error:
+        type: string

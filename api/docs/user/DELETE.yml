@@ -11,11 +11,20 @@ parameters:
 responses:
   204:
     description: Success
-    schema:
-      example:
+    example:
   400:
     description: Failure
     schema:
-      example:
+      $ref: '#/definitions/Error'
+    examples:
+      1000:
         code: 1000
         error: User does not exist
+definitions:
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+      error:
+        type: string
